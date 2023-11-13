@@ -24,6 +24,9 @@ class ServicioSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PedidoSerializer(serializers.ModelSerializer):
+    servicio = ServicioSerializer()
+    cliente = UserSerializer()
+    repartidor = UserSerializer()
     class Meta:
         model = Pedido
         fields = '__all__'

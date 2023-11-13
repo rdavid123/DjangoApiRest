@@ -12,4 +12,5 @@ router.register(r'pedidos',views.PedidoView, 'pedidos')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('users/email/<str:correo>/', views.users_by_email),
 ]

@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.hashers import BCryptPasswordHasher
 
 # Create your models here.
 class Role(models.Model):
@@ -15,10 +17,10 @@ class User(models.Model):
     correo = models.EmailField(max_length=50)
     telefono = models.CharField(max_length=9)
     dni = models.CharField(max_length=8)
-    password = models.CharField(max_length=25)
+    password = models.CharField(max_length=100)
     rol = models.ForeignKey(Role, on_delete=models.CASCADE)
     def __str__(self):
-        return self.correo 
+        return self.correo
     class Meta:
         db_table = 'users'
 
@@ -39,7 +41,7 @@ class Pedido(models.Model):
     estado = models.BooleanField(default=False)
     servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
     cantidad = models.IntegerField()
-    precio_unitario = models.DecimalField(decimal_places=2, max_digits=4)
+    precio = models.DecimalField(decimal_places=2, max_digits=4)
 
     def __str__(self):
         return self.cliente.correo
