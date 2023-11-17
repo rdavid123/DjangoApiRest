@@ -28,6 +28,10 @@ class ServicioView(viewsets.ModelViewSet):
     serializer_class = ServicioSerializer
     queryset = Servicio.objects.all()
 
+class PedidoDetailView(viewsets.ModelViewSet):
+    serializer_class = PedidoDetailSerializer
+    queryset = Pedido.objects.all()
+    
 class PedidoView(viewsets.ModelViewSet):
     serializer_class = PedidoSerializer
     queryset = Pedido.objects.all()

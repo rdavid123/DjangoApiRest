@@ -23,10 +23,15 @@ class ServicioSerializer(serializers.ModelSerializer):
         model = Servicio
         fields = '__all__'
 
-class PedidoSerializer(serializers.ModelSerializer):
-    servicio = ServicioSerializer()
+class PedidoDetailSerializer(serializers.ModelSerializer): #Para GET
     cliente = UserSerializer()
     repartidor = UserSerializer()
+    servicio = ServicioSerializer()
+    class Meta:
+        model = Pedido
+        fields = '__all__'
+        
+class PedidoSerializer(serializers.ModelSerializer): #Para POST PUT y DELETE
     class Meta:
         model = Pedido
         fields = '__all__'
