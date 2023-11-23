@@ -36,7 +36,6 @@ class Pedido(models.Model):
     OPCIONES_ENTREGA = [
         ('1', 'Recojo y envio a domicilio'),
         ('2', 'Recojo a Domicilio'),
-        # Puedes agregar más opciones según sea necesario
     ]
     cliente = models.ForeignKey(User, on_delete=models.CASCADE,related_name='pedidos_como_cliente')
     repartidor = models.ForeignKey(User, on_delete=models.CASCADE,related_name='pedidos_como_repartidor',null=True, blank=True)
@@ -47,17 +46,15 @@ class Pedido(models.Model):
         choices=[
             ('pendiente', 'Pendiente'), 
             ('en_proceso', 'En Proceso'), 
-            ('entregado', 'Entregado'),
+            ('en camino', 'En camino'),
+            ('finalizado', 'Finalizado'),
             ('cancelado', 'Cancelado')
         ], default='pendiente')
     servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
     cantidad = models.IntegerField()
-    tipo_entrega = models.CharField(max_length=10,
-        choices=OPCIONES_ENTREGA,
-        default='1')
+    tipo_entrega = models.CharField(max_length=10,choices=OPCIONES_ENTREGA,default='1')
     descripcion = models.TextField(null=True, blank=True)
     precio_total = models.DecimalField(decimal_places=2, max_digits=4)
-
     def __str__(self):
         return f"{self.cliente.correo} - {self.id}"
     class Meta:
