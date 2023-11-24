@@ -10,9 +10,13 @@ from rest_framework.decorators import api_view
 class RoleView(viewsets.ModelViewSet):
     serializer_class = RoleSerializer
     queryset = Role.objects.all()
-
+    
 class UserView(viewsets.ModelViewSet):
     serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+class UserDetailView(viewsets.ModelViewSet):
+    serializer_class = UserDetailSerializer
     queryset = User.objects.all()
 
 @csrf_exempt
@@ -20,7 +24,7 @@ class UserView(viewsets.ModelViewSet):
 def users_by_email(request, correo):    
     user = User.objects.filter(correo=correo).first()
     if request.method == 'GET':
-        serializer = UserSerializer(user)
+        serializer = UserDetailSerializer(user)
         return Response(serializer.data)
 
 

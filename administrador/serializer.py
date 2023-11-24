@@ -5,8 +5,13 @@ class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Role
         fields = '__all__'
+        
+class UserSerializer(serializers.ModelSerializer): # SOLO PARA POST, PUT, DELETE
+    class Meta:
+        model = User
+        fields = '__all__'
 
-class UserSerializer(serializers.ModelSerializer):
+class UserDetailSerializer(serializers.ModelSerializer): # SOLO PARA GET !!
     rol = RoleSerializer()
     class Meta:
         model = User
@@ -24,8 +29,8 @@ class ServicioSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PedidoDetailSerializer(serializers.ModelSerializer): #Para GET
-    cliente = UserSerializer()
-    repartidor = UserSerializer()
+    cliente = UserDetailSerializer()
+    repartidor = UserDetailSerializer()
     servicio = ServicioSerializer()
     class Meta:
         model = Pedido
