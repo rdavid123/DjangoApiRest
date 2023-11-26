@@ -1,6 +1,4 @@
 from django.db import models
-from django.contrib.auth.hashers import make_password, check_password
-from django.contrib.auth.hashers import BCryptPasswordHasher
 
 # Create your models here.
 class Role(models.Model):
@@ -17,7 +15,7 @@ class User(models.Model):
     correo = models.EmailField(max_length=50)
     telefono = models.CharField(max_length=9)
     dni = models.CharField(max_length=8)
-    avatar = models.ImageField(upload_to='imagenes/',default='imagenes/default.jpg')
+    avatar = models.ImageField(upload_to='imagenes/', null=True,default="imagenes/profile.jpg")
     password = models.CharField(max_length=100)
     rol = models.ForeignKey(Role, on_delete=models.CASCADE)
     def __str__(self):
@@ -46,6 +44,7 @@ class Pedido(models.Model):
         choices=[
             ('pendiente', 'Pendiente'), 
             ('en_proceso', 'En Proceso'), 
+            ('proceso_terminado', 'Proceso Terminado'), 
             ('en camino', 'En camino'),
             ('finalizado', 'Finalizado'),
             ('cancelado', 'Cancelado')
