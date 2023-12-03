@@ -18,6 +18,18 @@ class UserView(viewsets.ModelViewSet):
 class UserDetailView(viewsets.ModelViewSet):
     serializer_class = UserDetailSerializer
     queryset = User.objects.all()
+    
+class ClientesView(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.filter(rol=2)
+    
+class EmpleadosView(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.filter(rol=3)
+
+class RepartidoresView(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.filter(rol=4)
 
 @csrf_exempt
 @api_view(['GET', 'PUT', 'DELETE'])
