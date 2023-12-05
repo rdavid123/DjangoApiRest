@@ -24,9 +24,12 @@ class User(models.Model):
         db_table = 'users'
 
 class Servicio(models.Model):
-    servicio = models.CharField(max_length=25)
+    titulo = models.CharField(max_length=50)
+    descripcion = models.TextField(null=True, blank=True)
+    precio = models.DecimalField(max_digits=5, decimal_places=2)
+    imagen = models.ImageField(upload_to='productos/', null=True)
     def __str__(self):
-        return self.servicio
+        return self.titulo
     class Meta:
         db_table = 'servicios'
 
@@ -58,3 +61,20 @@ class Pedido(models.Model):
         return f"{self.cliente.correo} - {self.id}"
     class Meta:
         db_table = 'pedidos'
+        
+class Producto(models.Model):
+    titulo = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    precio = models.DecimalField(max_digits=5, decimal_places=2)
+    imagen = models.ImageField(upload_to='productos/')
+    class Meta:
+        db_table = 'Producto'
+
+class Ofertas(models.Model):
+    place_image = models.ImageField(upload_to='Ofertas/')
+    titulo = models.CharField(max_length=255)
+    Descripcion = models.TextField()
+    articleDateTime = models.CharField(max_length=255)
+    precio = models.FloatField()
+    class Meta:
+        db_table = 'Ofertas'

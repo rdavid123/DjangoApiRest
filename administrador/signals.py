@@ -11,9 +11,3 @@ def create_default_roles(sender, **kwargs):
         Role.objects.create(rol='ROLE_CLIENTE', descripcion='Usuario Normal de la pagina web')
         Role.objects.create(rol='ROLE_EMPLEADO', descripcion='realiza los servicios disponibles')
         Role.objects.create(rol='ROLE_REPARTIDOR', descripcion='reparte y recoje los pedidos')
-
-@receiver(post_migrate)
-def create_default_services(sender, **kwargs):
-    if Servicio.objects.count() == 0:
-        Servicio.objects.create(servicio='Lavado')
-        Servicio.objects.create(servicio='Lavado y Planchado')
