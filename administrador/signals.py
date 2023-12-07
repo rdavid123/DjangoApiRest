@@ -11,3 +11,4 @@ def create_default_roles(sender, **kwargs):
         Role.objects.create(rol='ROLE_CLIENTE', descripcion='Usuario Normal de la pagina web')
         Role.objects.create(rol='ROLE_EMPLEADO', descripcion='realiza los servicios disponibles')
         Role.objects.create(rol='ROLE_REPARTIDOR', descripcion='reparte y recoje los pedidos')
+        
