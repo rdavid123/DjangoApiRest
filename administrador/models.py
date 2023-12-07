@@ -39,24 +39,23 @@ class Pedido(models.Model):
         ('2', 'Recojo a Domicilio'),
     ]
     cliente = models.ForeignKey(User, on_delete=models.CASCADE,related_name='pedidos_como_cliente')
-    repartidor = models.ForeignKey(User, on_delete=models.CASCADE,related_name='pedidos_como_repartidor',null=True, blank=True)
-    fecha_pedido = models.DateTimeField()
+    repartidor = models.ForeignKey(User, on_delete=models.CASCADE,related_name='pedidos_como_repartidor')
+    fecha_pedido = models.DateTimeField(auto_now_add=True)
     fecha_entrega = models.DateTimeField(null=True, blank=True)
     direccion = models.CharField(max_length=150)
     estado = models.CharField(max_length=20, 
         choices=[
             ('pendiente', 'Pendiente'), 
-            ('en_proceso', 'En Proceso'), 
-            ('proceso_terminado', 'Proceso Terminado'), 
-            ('en camino', 'En camino'),
+            ('proceso', 'En Proceso'), 
+            ('terminado', 'Proceso Terminado'), 
+            ('en_camino', 'En camino'),
             ('finalizado', 'Finalizado'),
             ('cancelado', 'Cancelado')
         ], default='pendiente')
     servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
-    cantidad = models.IntegerField()
+    cantidad_prendas = models.IntegerField()
     tipo_entrega = models.CharField(max_length=10,choices=OPCIONES_ENTREGA,default='1')
     descripcion = models.TextField(null=True, blank=True)
-    precio_total = models.DecimalField(decimal_places=2, max_digits=4)
     def __str__(self):
         return f"{self.cliente.correo} - {self.id}"
     class Meta:
@@ -78,3 +77,11 @@ class Ofertas(models.Model):
     precio = models.FloatField()
     class Meta:
         db_table = 'Ofertas'
+        
+class Pago(models.Model):
+    pedido = models.OneToOneField(Pedido, on_delete=models.CASCADE)
+    monto = models.DecimalField(max_digits=10, decimal_places=2)
+    fecha_pago = models.DateTimeField(auto_now_add=True)
+    transaccion_id = models.CharField(max_length=255)
+    class Meta:
+        db_table = 'Pagos'

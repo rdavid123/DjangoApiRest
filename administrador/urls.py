@@ -16,6 +16,7 @@ router.register(r'pedidos',views.PedidoView, 'pedidos')
 router.register(r'pedidosdetail',views.PedidoDetailView, 'pedidosdetail')
 router.register(r'productos', views.ProductoViewSet, 'productos')
 router.register(r'Ofertas', views.OfertasView, 'Ofertas')
+router.register(r'pagos', views.PagoView, 'pagos')
 
 urlpatterns = [
     path('', include(router.urls)),

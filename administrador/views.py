@@ -59,3 +59,7 @@ class ProductoViewSet(viewsets.ModelViewSet):
 class OfertasView(viewsets.ModelViewSet):
     queryset = Ofertas.objects.all()
     serializer_class = OfertasSerializer
+    
+class PagoView(viewsets.ModelViewSet):
+    queryset = Pago.objects.all()
+    serializer_class = PagoSerializer
