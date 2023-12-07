@@ -47,7 +47,7 @@ class Pedido(models.Model):
         choices=[
             ('pendiente', 'Pendiente'), 
             ('proceso', 'En Proceso'), 
-            ('terminado', 'Proceso Terminado'), 
+            ('proceso_terminado', 'Proceso Terminado'), 
             ('en_camino', 'En camino'),
             ('finalizado', 'Finalizado'),
             ('cancelado', 'Cancelado')
