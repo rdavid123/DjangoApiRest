@@ -56,3 +56,14 @@ class PagoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pago
         fields = '__all__'
+        
+class PagoDetailSerializer(serializers.ModelSerializer):
+    pedido = PedidoSerializer()
+    class Meta:
+        model = Pago
+        fields = '__all__'
+    def create(self, validated_data):
+        pedido_data = validated_data.pop('pedido')
+        pedido, created = Pedido.objects.get_or_create(**pedido_data)
+        pago = Pago.objects.create(pedido=pedido, **validated_data)
+        return pago

@@ -18,6 +18,7 @@ class User(models.Model):
     avatar = models.ImageField(upload_to='imagenes/', null=True,default="imagenes/profile.jpg")
     password = models.CharField(max_length=100)
     rol = models.ForeignKey(Role, on_delete=models.CASCADE)
+    estado_repartidor = models.BooleanField(default=True, null=True, blank=True)
     def __str__(self):
         return self.correo
     class Meta:
