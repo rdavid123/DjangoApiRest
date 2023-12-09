@@ -11,6 +11,11 @@ class UserSerializer(serializers.ModelSerializer): # SOLO PARA POST, PUT, DELETE
         model = User
         fields = '__all__'
 
+class UserSerializerForUpdate(serializers.ModelSerializer): # SOLO PARA PATCH
+    class Meta:
+        model = User
+        exclude = ['avatar']
+
 class UserDetailSerializer(serializers.ModelSerializer): # SOLO PARA GET !!
     rol = RoleSerializer()
     class Meta:

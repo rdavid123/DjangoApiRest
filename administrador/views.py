@@ -15,6 +15,14 @@ class UserView(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
+#Para actualizar la info. de un usuario
+class UserViewUpdate(viewsets.ModelViewSet):
+    serializer_class = UserSerializerForUpdate
+    queryset = User.objects.all()
+    http_method_names = ['get', 'post', 'put', 'patch', 'delete']
+    def partial_update(self, request, *args, **kwargs):
+        return super().partial_update(request, *args, **kwargs)
+
 class UserDetailView(viewsets.ModelViewSet):
     serializer_class = UserDetailSerializer
     queryset = User.objects.all()

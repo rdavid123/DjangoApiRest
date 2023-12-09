@@ -40,7 +40,7 @@ class Pedido(models.Model):
         ('2', 'Recojo a Domicilio'),
     ]
     cliente = models.ForeignKey(User, on_delete=models.CASCADE,related_name='pedidos_como_cliente')
-    repartidor = models.ForeignKey(User, on_delete=models.CASCADE,related_name='pedidos_como_repartidor')
+    repartidor = models.ForeignKey(User, on_delete=models.CASCADE,related_name='pedidos_como_repartidor',null=True,blank=True)
     fecha_pedido = models.DateTimeField(auto_now_add=True)
     fecha_entrega = models.DateTimeField(null=True, blank=True)
     direccion = models.CharField(max_length=150)
