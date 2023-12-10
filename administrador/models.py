@@ -62,13 +62,6 @@ class Pedido(models.Model):
     class Meta:
         db_table = 'pedidos'
         
-class Producto(models.Model):
-    titulo = models.CharField(max_length=100)
-    descripcion = models.TextField()
-    precio = models.DecimalField(max_digits=5, decimal_places=2)
-    imagen = models.ImageField(upload_to='productos/')
-    class Meta:
-        db_table = 'Producto'
 
 class Ofertas(models.Model):
     place_image = models.ImageField(upload_to='Ofertas/')

@@ -60,10 +60,6 @@ class PedidoView(viewsets.ModelViewSet):
     serializer_class = PedidoSerializer
     queryset = Pedido.objects.all()
 
-class ProductoViewSet(viewsets.ModelViewSet):
-    queryset = Producto.objects.all()
-    serializer_class = ProductoSerializer
-
 class OfertasView(viewsets.ModelViewSet):
     queryset = Ofertas.objects.all()
     serializer_class = OfertasSerializer

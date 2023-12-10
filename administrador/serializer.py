@@ -45,12 +45,6 @@ class PedidoSerializer(serializers.ModelSerializer): #Para POST PUT y DELETE
     class Meta:
         model = Pedido
         fields = '__all__'
-    
-class ProductoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Producto
-        fields = '__all__'
-
 
 class OfertasSerializer(serializers.ModelSerializer):
     class Meta:
