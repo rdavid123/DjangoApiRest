@@ -4,6 +4,7 @@ from .models import Role, Servicio
 
 @receiver(post_migrate)
 def create_default_roles(sender, **kwargs):
+    
     # Verifica si la tabla de roles está vacía
     if Role.objects.count() == 0:
         # Crea los registros de roles predeterminados
