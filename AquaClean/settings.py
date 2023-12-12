@@ -17,7 +17,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 #DEBUG = True
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://aquacleanweb.onrender.com"]
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:   
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
@@ -50,7 +50,6 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
     "http://localhost:8080",
 ]
 
