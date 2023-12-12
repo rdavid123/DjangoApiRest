@@ -146,9 +146,9 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = BASE_DIR/'imagenes'
 MEDIA_URL = '/imagenes/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+# ]
 
 
 if not DEBUG:
