@@ -9,13 +9,16 @@ class Role(models.Model):
     class Meta:
         db_table = 'roles'
 
+def user_avatar_path(instance, filename):
+    return f'imagenes/{filename}'
+
 class User(models.Model):
     nombre = models.CharField(max_length=25)
     apellido = models.CharField(max_length=25)
     correo = models.EmailField(max_length=50)
     telefono = models.CharField(max_length=9)
     dni = models.CharField(max_length=8)
-    avatar = models.ImageField(upload_to='imagenes/', null=True,default="imagenes/profile.jpg")
+    avatar = models.ImageField(upload_to=user_avatar_path, null=True,default="imagenes/profile.jpg")
     password = models.CharField(max_length=100)
     rol = models.ForeignKey(Role, on_delete=models.CASCADE)
     estado_repartidor = models.BooleanField(default=True, null=True, blank=True)
