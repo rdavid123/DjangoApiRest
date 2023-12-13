@@ -6,6 +6,37 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenObtainPairView
+class CustomLoginView(APIView):
+    def post(self, request, *args, **kwargs):
+        # Obtener las credenciales del cuerpo de la solicitud
+        correo = request.data.get('correo')
+        password = request.data.get('password')
+        print(f"Credenciales: correo={correo}, password={password}")
+        try:
+            # Buscar al usuario en tu modelo personalizado de Usuario
+            user = User.objects.get(correo=correo)  # Utilizar el campo 'correo' de tu modelo
+            print(f"Usuario encontrado: {user}")
+            # Verificar la contraseña
+            if user.password == password:
+                # Usuario autenticado correctamente, generar tokens JWT
+                refresh = RefreshToken.for_user(user)
+                user_serializer = UserSerializer(user)
+                usuario_info = user_serializer.data
+                return Response({'refresh': str(refresh), 'access': str(refresh.access_token), 'user': usuario_info})
+            else:
+                # Contraseña incorrecta
+                return Response({'detail': 'No active account found with the given credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+        except User.DoesNotExist:
+            # Si la autenticación falla, devolver un mensaje de error
+            return Response({'detail': 'No active account found with the given credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+        
+
 # Create your views here.
 class RoleView(viewsets.ModelViewSet):
     serializer_class = RoleSerializer

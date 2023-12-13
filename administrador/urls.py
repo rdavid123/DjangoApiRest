@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework import routers
 from . import views
-
+from .views import CustomLoginView
 #from . import views
 
 router = routers.DefaultRouter()
@@ -26,4 +26,5 @@ router.register(r'pagosdetail', views.PagoDetailView, 'pagosdetail')
 urlpatterns = [
     path('', include(router.urls)),
     path('users/email/<str:correo>/', views.users_by_email),
+    path('api/token/', CustomLoginView.as_view(), name='token_obtain_pair'),
 ]
