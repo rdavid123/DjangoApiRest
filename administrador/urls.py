@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework import routers
 from . import views
-from .views import CustomLoginView
+from .views import *
 #from . import views
 
 router = routers.DefaultRouter()
@@ -27,4 +27,8 @@ urlpatterns = [
     path('', include(router.urls)),
     path('users/email/<str:correo>/', views.users_by_email),
     path('api/token/', CustomLoginView.as_view(), name='token_obtain_pair'),
+    path('register/admin/', register_admin, name='register_admin'),
+    path('register/cliente/', register_user, name='register_user'),
+    path('register/empleado/', register_empleado, name='register_empleador'),
+    path('register/repartidor/', register_repartidor, name='register_repartidor'),
 ]
