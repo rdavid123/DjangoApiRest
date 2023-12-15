@@ -78,6 +78,7 @@ SIMPLE_JWT = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
+    "https://aquaclean-ayrz.onrender.com"
 ]
 
 ROOT_URLCONF = 'AquaClean.urls'
