@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 
+from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -220,3 +221,10 @@ class PagoView(viewsets.ModelViewSet):
 class PagoDetailView(viewsets.ModelViewSet):
     serializer_class = PagoDetailSerializer
     queryset = Pago.objects.all()
+    
+class PedidosByClienteView(generics.ListAPIView):
+    serializer_class = PedidoSerializer
+    def get_queryset(self):
+        cliente_id = self.kwargs['cliente_id']
+        queryset = Pedido.objects.filter(cliente=cliente_id)
+        return queryset

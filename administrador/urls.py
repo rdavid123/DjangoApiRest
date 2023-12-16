@@ -31,4 +31,5 @@ urlpatterns = [
     path('register/cliente/', register_user, name='register_user'),
     path('register/empleado/', register_empleado, name='register_empleador'),
     path('register/repartidor/', register_repartidor, name='register_repartidor'),
+    path('pedidos/cliente/<int:cliente_id>/', PedidosByClienteView.as_view(), name='pedidos-cliente'),
 ]
